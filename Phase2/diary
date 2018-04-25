@@ -1,0 +1,93 @@
+theta(1)
+
+ans =
+
+   81.4686
+
+theta(:,1)
+
+ans =
+
+   81.4686
+   81.6720
+   82.2823
+   83.0968
+   83.9130
+   84.7323
+   85.5573
+   86.3923
+   87.2460
+   88.1395
+   89.1403
+   90.6521
+  264.6974
+  268.1855
+  267.7802
+  267.1304
+  266.4103
+  265.6600
+  264.8937
+  264.3123
+  264.1176
+
+theta(1,:)
+
+ans =
+
+   81.4686  197.2539         0
+
+ax(1)
+
+ans =
+
+    5.9256
+
+by(1)
+
+ans =
+
+   20.0222
+
+R{1}
+
+ans =
+
+   -0.1661   -0.9861
+    0.9861   -0.1661
+
+Beta(1)*pi/180
+
+ans =
+
+    0.0245
+
+Beta(1)*180/pi
+
+ans =
+
+   80.4412
+
+rotz(Beta(1))*[ax(1) by(1)]'
+{Error using <a href="matlab:helpUtils.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Inner matrix dimensions must agree.
+} 
+rotz(Beta(1))*[ax(1) by(1) 0]'
+
+ans =
+
+  -18.7602
+    9.1682
+         0
+
+R{1}*[ax(1) by(1) 0]'
+{Error using <a href="matlab:helpUtils.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Inner matrix dimensions must agree.
+} 
+R{1}*[ax(1) by(1)]'
+
+ans =
+
+  -20.7282
+    2.5184
+
+diary off

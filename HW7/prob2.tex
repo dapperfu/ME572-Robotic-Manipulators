@@ -1,0 +1,53 @@
+Dexterity ellipsoid.
+
+The Jacobian matrix is in the form of:
+\begin{eqnarray}
+\begin{Bmatrix}
+\dot{P_x} \\
+\dot{P_y} \\
+\dot{P_z} \\
+\omega_x \\
+\omega_y \\
+\omega_z
+\end{Bmatrix} &=&
+\begin{bmatrix}
+J \\
+6 \times 2
+\end{bmatrix}
+\begin{Bmatrix}
+\dot{\theta}_1 \\
+\dot{\theta}_2
+\end{Bmatrix}
+\end{eqnarray}
+
+The Jacobian matrix for this problem is:
+\begin{eqnarray}
+J&=&\begin{Bmatrix}
+\vec{a}_0 \times \parens{\vec{P}_E-\vec{P}_{0}} 	&
+\vec{a}_1 \times \parens{\vec{P}_E-\vec{P}_{1}} 	\\
+\vec{a}_0& \vec{a}_1 \\
+\end{Bmatrix}
+\end{eqnarray}
+
+Where: 
+\input{JacobianParts}
+
+The manipulability of linear velocity is given by $\dot{\vec{x}}=J_{top}\dot{q}$ where $J_{top}$ is square. For the manipulator:
+\input{JTop}
+
+The ellipsoid can then be determined from the eigenvalues and eigenvectors where 
+
+\begin{eqnarray}
+a_x&=&\frac{1}{\sqrt{\lambda_1}} \\
+b_y&=&\frac{1}{\sqrt{\lambda_2}}  \\
+\end{eqnarray}
+
+For the point near the singularity where: $\theta_1=264.6974$ \& $\theta_2=180.3196$:
+
+$\beta=175.0170$, $a_x=0.0500$, $b_y=8.9637$.
+
+For the point at the start where:  $\theta_1=81.469$ \& $\theta_2=197.254$:
+
+$\beta=170.4411$, $a_x=0.0499$, $b_y=0.1688$.
+
+The shape becomes very cylindrical near the singularity because $b_y$ is very large compared to $a_x$.

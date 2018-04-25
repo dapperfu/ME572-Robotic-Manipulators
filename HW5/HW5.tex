@@ -1,0 +1,182 @@
+\documentclass{report}
+% Change "article" to "report" to get rid of page number on title page
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{Tabbing}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{soul,color}
+\usepackage{graphicx,float,wrapfig}
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Homework Specific Information
+\newcommand{\hmwkTitle}{Particle Kinematics}
+\newcommand{\hmwkDueDate}{Feb 20, 2012}
+\newcommand{\hmwkClass}{ME572}
+\newcommand{\hmwkNumber}{5}
+\newcommand{\hmwkAuthorName}{Jedediah Frey}
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\hmwkAuthorName}                                                 %
+\chead{\hmwkClass\ Homework \#\hmwkNumber}  %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+
+% This is used to trace down (pin point) problems
+% in latexing a document:
+%\tracingall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\parens}[1]{\left[#1\right]}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newlength{\labelLength}
+\newcommand{\labelAnswer}[2]
+  {\settowidth{\labelLength}{#1}%
+   \addtolength{\labelLength}{0.25in}%
+   \changetext{}{-\labelLength}{}{}{}%
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#2\end{minipage}}%
+   \marginpar{\fbox{#1}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   \changetext{}{+\labelLength}{}{}{}}%
+
+\setcounter{secnumdepth}{0}
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\problemAnswer}[1]
+  {\noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}}%
+
+\newcommand{\problemLAnswer}[1]
+  {\labelAnswer{\homeworkProblemName}{#1}}
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+   % Otherwise the changetext can do funny things to the other margin
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon (otherwise \sectionAnswer's can
+   % get ugly about their \marginpar placement.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\sectionAnswer}[1]
+  {% We put this space here to make sure we're disconnected from the previous
+   % passage
+
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}%
+   \enterProblemHeader{\homeworkProblemName}\exitProblemHeader{\homeworkProblemName}%
+   \marginpar{\fbox{\homeworkSectionName}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   }%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\vspace{2in}\textmd{\textbf{\hmwkClass:\ Homework \#\hmwkNumber}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}}
+\date{}
+\author{\textbf{\hmwkAuthorName}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{spacing}{1.1}
+\maketitle
+\newpage
+% Uncomment the \tableofcontents and \newpage lines to get a Contents page
+% Uncomment the \setcounter line as well if you do NOT want subsections
+%       listed in Contents
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+%\newpage
+
+% When problems are long, it may be desirable to put a \newpage or a
+% \clearpage before each homeworkProblem environment
+
+\clearpage
+\begin{homeworkProblem}
+See attached page for drawings on XYZ coordinate frames on each link.
+\begin{description}
+  \item[$\Theta_1$] Rotation about $Z_0$ from $X_0$ to $X_1$. $\theta_1$ on the manipulator.
+  \item[$d_1$] Distance from $O_0$ to the intersection of $Z_0$ and $Z_1$ ($O_1$) along $Z_0$. Defined as L1.
+  \item[$a_1$] Distance along $X_1$ to get to $O_1$. 0, there is no common normal because $Z_0$ and $Z_1$ intersect.
+  \item[$\alpha_1$] Rotation about $X_1$ to align $Z_0$ to $Z_1$. Immediately appears to be $-90^o$, but since $X_1$ is defined as into the page it is $90^o$.
+\end{description}
+
+\begin{description}
+  \item[$\Theta_2$] Rotation about $Z_1$ from $X_1$ to $X_2$ (ccw). $\theta_2$ on the manipulator.
+  \item[$d_2$] Distance from $O_1$ to the intersection of $Z_1$ and $Z_2$ ($O_2$) along $Z_1$.
+  \item[$a_2$] Distance along $X_2$ to get to $O_2$. 0, there is no common normal because $Z_1$ and $Z_2$ intersect.
+  \item[$\alpha_2$] Rotation about $X_2$ to align $Z_1$ to $Z_2$. Immediately appears to be $90^o$, but since $X_2$ is defined as into the page it is $-90^o$.
+\end{description}
+
+\begin{description}
+  \item[$\Theta_3$] Rotation about $Z_2$ from $X_2$ to $X_3$ (ccw). $-90^o$ to align $X_2$ to $X_3$ ($n$).
+  \item[$d_3$] Distance from $O_2$ to the intersection of $Z_2$ and $Z_3$ ($O_3$). $S_3$ since this is the prismatic joint.
+  \item[$a_3$] Distance along $X_3$ to get to $O_3$. 0, there is no common normal because $Z_2$ and $Z_3$ lie on top of each other.
+  \item[$\alpha_3$] Rotation about $X_3$ to align $Z_2$ to $Z_3$. 0. $Z_2$ and $Z_3$ point in the same direction.
+\end{description}
+
+All together the parameters for each of the the different joints are as follows:
+\begin{center}
+\begin{tabular}[H]{c | c | c | c | c }
+ & $\Theta_i$ & $d_i$ & $a_i$ & $\alpha_i$ \\
+\hline
+1 & $\theta_1$ & $L_1$ & 0 & $90^o$ \\
+2 & $\theta_2$ & $d_2$ & 0 & $-90^o$ \\
+3 & $-90^o$ & $S_3$ & 0 & 0
+\end{tabular}
+\end{center}
+Substituting these into the DH matrix given in the notes the individual transformation matrices can be generated.
+\input{params1}
+This manipulator transform is not the same as the one as found from the other method because the variables are defined slightly different and since the link coordinate axes are not the exact same. 
+
+As drawn $\theta_1$ from the DH matrix is actually $\theta_1'+90^o$ where $\theta_1'$ is the angle as defined in the previous homework. This is because for the $\Theta_1$ rotation (as drawn) $X_1$ actually points into the page. So if the manipulator is shown with all angles in the zero position, the DH $\theta_1$ is actually at $90^0$.
+
+This can be verified by substituting in the below variables in. The correct orientation should be an identity matrix (identical to $X_0$, $Y_0$, and $Z_0$). The position of the end effector should be $P_x=d_2$,  $P_y=0$, $P_z=L_1+S_3$, which is what is shown below
+\input{params2}
+\end{homeworkProblem}
+\end{spacing}
+\end{document}

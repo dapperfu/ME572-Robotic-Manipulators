@@ -1,0 +1,152 @@
+\documentclass{report}
+% Change "article" to "report" to get rid of page number on title page
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{Tabbing}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{soul,color}
+\usepackage{graphicx,float,wrapfig}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+
+
+\usepackage{enumerate}
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Homework Specific Information
+\newcommand{\hmwkDueDate}{March 21, 2012}
+\newcommand{\hmwkClass}{ME572}
+\newcommand{\hmwkNumber}{7}
+\newcommand{\hmwkAuthorName}{Jedediah Frey}
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\hmwkAuthorName}                                                 %
+\chead{\hmwkClass\ Homework \#\hmwkNumber}  %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %t
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+
+% This is used to trace down (pin point) problems
+% in latexing a document:
+%\tracingall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\parens}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newlength{\labelLength}
+\newcommand{\labelAnswer}[2]
+  {\settowidth{\labelLength}{#1}%
+   \addtolength{\labelLength}{0.25in}%
+   \changetext{}{-\labelLength}{}{}{}%
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#2\end{minipage}}%
+   \marginpar{\fbox{#1}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   \changetext{}{+\labelLength}{}{}{}}%
+
+\setcounter{secnumdepth}{0}
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\problemAnswer}[1]
+  {\noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}}%
+
+\newcommand{\problemLAnswer}[1]
+  {\labelAnswer{\homeworkProblemName}{#1}}
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+   % Otherwise the changetext can do funny things to the other margin
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon (otherwise \sectionAnswer's can
+   % get ugly about their \marginpar placement.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\sectionAnswer}[1]
+  {% We put this space here to make sure we're disconnected from the previous
+   % passage
+
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}%
+   \enterProblemHeader{\homeworkProblemName}\exitProblemHeader{\homeworkProblemName}%
+   \marginpar{\fbox{\homeworkSectionName}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   }%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\vspace{2in}\textmd{\textbf{\hmwkClass:\ Homework \#\hmwkNumber}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}}
+\date{}
+\author{\textbf{\hmwkAuthorName}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{spacing}{1.1}
+\maketitle
+\newpage
+% Uncomment the \tableofcontents and \newpage lines to get a Contents page
+% Uncomment the \setcounter line as well if you do NOT want subsections
+%       listed in Contents
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+%\newpage
+
+% When problems are long, it may be desirable to put a \newpage or a
+% \clearpage before each homeworkProblem environment
+
+\clearpage
+\begin{eqnarray}
+D_1&=&\begin{bmatrix}
+(m2\cdot \cos(\theta_2)\cdot (\cos(\theta_2)\cdot (d\dot{\theta}_1\cdot l + g\cdot \cos(\theta_1)) + \sin(\theta_2)\cdot (l\cdot \dot{\theta}_1^2 - g\cdot \sin(\theta_1)) + (l\cdot (d\dot{\theta}_1 + d\dot{\theta}_2))/2) - m2\cdot \sin(\theta_2)\cdot ((l\cdot (\dot{\theta}_1 + \dot{\theta}_2)^2)/2 - \sin(\theta_2)\cdot (d\dot{\theta}_1\cdot l + g\cdot \cos(\theta_1)) + \cos(\theta_2)\cdot (l\cdot \dot{\theta}_1^2 - g\cdot \sin(\theta_1))))\cdot (l\cdot \cos(\theta_1)^2 + l\cdot \sin(\theta_1)^2) + m1\cdot ((d\dot{\theta}_1\cdot l)/2 + g\cdot \cos(\theta_1))\cdot (l\cdot \cos(\theta_1)^2 - l/2 + l\cdot \sin(\theta_1)^2) + m2\cdot (l\cdot \cos(\theta_2)^2 - l/2 + l\cdot \sin(\theta_2)^2)\cdot (\cos(\theta_2)\cdot (d\dot{\theta}_1\cdot l + g\cdot \cos(\theta_1)) + \sin(\theta_2)\cdot (l\cdot \dot{\theta}_1^2 - g\cdot \sin(\theta_1)) + (l\cdot (d\dot{\theta}_1 + d\dot{\theta}_2))/2) + (l^2\cdot m2\cdot (d\dot{\theta}_1 + d\dot{\theta}_2))/12 + (d\dot{\theta}_1\cdot l^2\cdot m1)/12\\ 
+\end{bmatrix} \\
+\begin{bmatrix}
+D_2&=&m2\cdot (l\cdot \cos(\theta_2)^2 - l/2 + l\cdot \sin(\theta_2)^2)\cdot (\cos(\theta_2)\cdot (d\dot{\theta}_1\cdot l + g\cdot \cos(\theta_1)) + \sin(\theta_2)\cdot (l\cdot \dot{\theta}_1^2 - g\cdot \sin(\theta_1)) + (l\cdot (d\dot{\theta}_1 + d\dot{\theta}_2))/2) + (l^2\cdot m2\cdot (d\dot{\theta}_1 + d\dot{\theta}_2))/12\\ 
+\end{bmatrix}
+\end{eqnarray}
+
+\end{spacing}
+\end{document}

@@ -1,0 +1,41 @@
+close all;clear all;clc;
+% Generate matrices.
+syms theta_1 theta_2 alpha L_1 d_2 S_3
+A1=dh(theta_1,L_1,0,90);
+A2=dh(theta_2,d_2,0,-90);
+A3=dh(-90,S_3,0,0);
+T=A1*A2*A3;
+fid=fopen('params1.tex','w');
+fprintf(fid,'\\begin{eqnarray}\n');
+fprintf(fid,'A_1&=&%s \\\\ \n',mat2latex(A1));
+fprintf(fid,'A_2&=&%s \\\\ \n',mat2latex(A2));
+fprintf(fid,'A_2&=&%s \\\\ \n',mat2latex(A3));
+fprintf(fid,'T&=&A_1A_2A_3 \\\\ \n');
+fprintf(fid,'&=&%s\n\\end{eqnarray}\n',mat2latex(T));
+fclose(fid);fclose('all');
+fprintf('params1.tex written\n');
+%% Verification
+theta_1=0;
+theta_2=0;
+L_1=5;
+d_2=4;
+S_3=3;
+A1=dh(theta_1+90,L_1,0,90);
+A2=dh(theta_2,d_2,0,-90);
+A3=dh(-90,S_3,0,0);
+T=A1*A2*A3;
+fid=fopen('params2.tex','w');
+fprintf(fid,'\\begin{eqnarray}\n');
+fprintf(fid,'\\theta_1&=&%d \\\\ \n',theta_1);
+fprintf(fid,'L_1&=&%d \\\\ \n',L_1);
+fprintf(fid,'\\theta_2&=&%d \\\\ \n',theta_2);
+fprintf(fid,'d_2&=&%d \\\\ \n',d_2);
+fprintf(fid,'S_3&=&%d \\\\ \n',S_3);
+fprintf(fid,'A_1&=&%s \\\\ \n',mat2latex(A1,'%d'));
+fprintf(fid,'A_2&=&%s \\\\ \n',mat2latex(A2,'%d'));
+fprintf(fid,'A_2&=&%s \\\\ \n',mat2latex(A3,'%d'));
+fprintf(fid,'T&=&%s\n',mat2latex(T,'%d'));
+fprintf(fid,'\\end{eqnarray}\n');
+fclose(fid);
+fclose('all');
+fprintf('params2.tex written\n');

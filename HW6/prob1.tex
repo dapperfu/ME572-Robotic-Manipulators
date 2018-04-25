@@ -1,0 +1,68 @@
+\begin{homeworkProblem}
+\textit{For the 2-D manipulator used in homework set \#3, set up a general form for the Jacobian matrix in terms of the joint variables.}
+
+From the previous homework $T_w$ is shown below:
+\input{Tw}
+
+The Jacobian matrix is in the form of:
+\begin{eqnarray}
+\begin{Bmatrix}
+\dot{P_x} \\
+\dot{P_y} \\
+\dot{P_z} \\
+\omega_x \\
+\omega_y \\
+\omega_z
+\end{Bmatrix} &=&
+\begin{bmatrix}
+J \\
+6 \times 3
+\end{bmatrix}
+\begin{Bmatrix}
+\dot{\theta_1} \\
+\dot{S_2} \\
+\dot{\theta_3}
+\end{Bmatrix}
+\end{eqnarray}
+
+Where the columns of the Jacobian for the revolute and prismatic joint i are given by Eqn. \ref{RevJoint} and \ref{PrizJoint}, respectively.
+\begin{eqnarray}
+\begin{Bmatrix}
+\vec{a}_{i-1}\times\begin{pmatrix}\vec{P}_E-\vec{P}_{i-1}\end{pmatrix} \\
+\vec{a}_{i-1}
+\end{Bmatrix} \label{RevJoint} \\
+\begin{Bmatrix}
+\vec{a}_{i-1} \\ 0 \\ 0 \\ 0
+\end{Bmatrix} \label{PrizJoint}
+\end{eqnarray} 
+So the Jacobian matrix for this problem should be:
+\begin{eqnarray}
+J&=&\begin{Bmatrix}
+\vec{a}_0 \times \parens{\vec{P}_E-\vec{P}_{0}} 	&
+\vec{a}_1									&
+\vec{a}_2 \times \parens{\vec{P}_E-\vec{P}_{2}} 	\\
+&
+0&
+\\
+\vec{a}_0&
+0  &
+\vec{a}_2&
+\\
+&
+0     &
+\end{Bmatrix}
+\end{eqnarray}
+Substituting in the appropriate values, the Jacobian for this 2-D manipulator is:
+\input{J}
+
+The velocity end effector equations can be verified by taking the derivative of the world transform $T_m.$ 
+\begin{eqnarray}
+T_m&=&\phi_1T_1\phi_2T_2\phi_3T_3 \\
+\frac{dT_m}{dt}&=&\frac{d\phi_1}{dt}T_1\phi_2T_2\phi_3T_3+\phi_1T_1\frac{d\phi_2}{dt}T_2\phi_3T_3+\phi_1T_1\phi_2T_2\frac{\phi_3}{dt}T_3
+\end{eqnarray}
+
+Where $\frac{d\phi_i}{dt}=\dot{\phi}\cdot Q_i\phi_i$ and Q depends on if the joint is revolute or prismatic. The 4$^{th}$ column of $\frac{dT_m}{dt}$ will correspond to $\begin{Bmatrix}
+\dot{P_x} \\
+\dot{P_y} \\
+\dot{P_z}\end{Bmatrix}$ from the output of the Jacobian matrix, which it does.
+\end{homeworkProblem}

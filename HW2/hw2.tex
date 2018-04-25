@@ -1,0 +1,247 @@
+\documentclass{report}
+% Change "article" to "report" to get rid of page number on title page
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{Tabbing}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{soul,color}
+\usepackage{graphicx,float,wrapfig}
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Homework Specific Information
+\newcommand{\hmwkTitle}{Particle Kinematics}
+\newcommand{\hmwkDueDate}{Jan 27, 2012}
+\newcommand{\hmwkClass}{ME572}
+\newcommand{\hmwkNumber}{2}
+\newcommand{\hmwkAuthorName}{Jedediah Frey}
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\hmwkAuthorName}                                                 %
+\chead{\hmwkClass\ Homework \#\hmwkNumber}  %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+
+% This is used to trace down (pin point) problems
+% in latexing a document:
+%\tracingall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\parens}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newlength{\labelLength}
+\newcommand{\labelAnswer}[2]
+  {\settowidth{\labelLength}{#1}%
+   \addtolength{\labelLength}{0.25in}%
+   \changetext{}{-\labelLength}{}{}{}%
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#2\end{minipage}}%
+   \marginpar{\fbox{#1}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   \changetext{}{+\labelLength}{}{}{}}%
+
+\setcounter{secnumdepth}{0}
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\problemAnswer}[1]
+  {\noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}}%
+
+\newcommand{\problemLAnswer}[1]
+  {\labelAnswer{\homeworkProblemName}{#1}}
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+   % Otherwise the changetext can do funny things to the other margin
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon (otherwise \sectionAnswer's can
+   % get ugly about their \marginpar placement.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\sectionAnswer}[1]
+  {% We put this space here to make sure we're disconnected from the previous
+   % passage
+
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}%
+   \enterProblemHeader{\homeworkProblemName}\exitProblemHeader{\homeworkProblemName}%
+   \marginpar{\fbox{\homeworkSectionName}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   }%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\vspace{2in}\textmd{\textbf{\hmwkClass:\ Homework \#\hmwkNumber}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}}
+\date{}
+\author{\textbf{\hmwkAuthorName}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{spacing}{1.1}
+\maketitle
+\newpage
+% Uncomment the \tableofcontents and \newpage lines to get a Contents page
+% Uncomment the \setcounter line as well if you do NOT want subsections
+%       listed in Contents
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+%\newpage
+
+% When problems are long, it may be desirable to put a \newpage or a
+% \clearpage before each homeworkProblem environment
+
+\clearpage
+\begin{homeworkProblem}
+1)  What is the rotation matrix for a rotation of 60 degrees about the OU axis, followed by a rotation of 300 degrees about the OW axis, followed by a rotation of 45 degrees about the OY axis?
+
+The axes before any rotations are shown in Eqn. \ref{X}, \ref{Y}, \& \ref{Z}.
+\begin{eqnarray}
+x&=&u \label{X} \\
+y&=&v \label{Y} \\
+z&=&w \label{Z}
+\end{eqnarray}
+
+$R_{u,\theta_1}$ is the initial rotation matrix. $R_{w,\theta_2}$ is a rotation about the body so is post multiplied. $R_{y,\theta_3}$ is with respect to the origin and is premultiplied.
+Test 
+\begin{eqnarray}
+\begin{Bmatrix} p_x \\ p_y \\ p_z \end{Bmatrix} &=& [R_{y,\theta_3}][R_{u,\theta_1}][R_{w,\theta_2}] \begin{Bmatrix}P_u \\ P_v \\ P_w\end{Bmatrix}\\
+R_{u,\theta_1} &=& \begin{bmatrix} 1 & 0 & 0 \\ 0 & \cos(\theta_1) & -\sin(\theta_1) \\ 0 & \sin(\theta_1) & \cos(\theta) \end{bmatrix} \\
+R_{w,\theta_2} &=& \begin{bmatrix} \cos(\theta_2) & -\sin(\theta_2) & 0 \\ \sin(\theta_2) & \cos(\theta_2) & 0 \\ 0 & 0 & 1 \end{bmatrix} \\
+R_{y,\theta_3} &=& \begin{bmatrix} \cos(\theta_3) & 0 & \sin(\theta_3) \\ 0 & 1 & 0 \\ -\sin(\theta_3) & 0 & \cos(\theta_3) \end{bmatrix} \\
+R &=&\begin{bmatrix} \cos(\theta_2)\cos(\theta_3) + \sin(\theta_1)\sin(\theta_2)\sin(\theta_3) & \cos(\theta_2)\sin(\theta_1)\sin(\theta_3) - \cos(\theta_3)\sin(\theta_2) & 0 \\
+                           \cos(\theta_1)\sin(\theta_2) &                           \cos(\theta_1)\cos(\theta_2) & 0 \\
+\cos(\theta_3)\sin(\theta_1)\sin(\theta_2) - \cos(\theta_2)\sin(\theta_3) & \sin(\theta_2)\sin(\theta_3) + \cos(\theta_2)\cos(\theta_3)\sin(\theta_1) & 0\end{bmatrix} \\
+\begin{Bmatrix}P_x \\ P_y \\ P_z\end{Bmatrix} &=&\begin{bmatrix}
+-0.1768 & 0.9186 & 0 \\
+-0.4330 & 0.2500 & 0 \\
+-0.8839 & -0.3062 & 0 
+\end{bmatrix}
+\begin{Bmatrix}P_u \\ P_v \\ P_w\end{Bmatrix}
+\end{eqnarray}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+List all other sequences of rotations which result in the same net rotation as shown in Eqn. \ref{initialRot}.
+\begin{equation}\label{initialRot}
+R=R_{\phi}R_{\alpha}R_{\beta}R_{\theta} 
+\end{equation}
+For the purposes of notation a rotation about u is an x rotation w.r.t. the body, v is a y rotation w.r.t. the body, \& w is a z rotation w.r.t. the body. Rotations x, y, z are in reference to the fixed frame. The following are all other sequences which result in the same rotation \ref{initialRot}.
+
+\begin{eqnarray}
+% Start with \phi
+R_{x,\phi}, R_{w,\alpha}, R_{u,\beta}, R_{v,\theta}  \nonumber \\
+% Start with \alpha
+R_{z,\alpha}, R_{x,\phi}, R_{u,\beta}, R_{v,\theta}  \nonumber \\
+R_{z,\alpha}, R_{u,\beta}, R_{x,\phi}, R_{v,\theta}  \nonumber \\
+% R_{x,\phi}, R_{u,\beta}, R_{v,\theta},  R_{z,\alpha} \nonumber \\
+% Start with \beta
+R_{x,\beta}, R_{v,\theta}, R_{z,\alpha}, R_{x,\phi}  \nonumber \\
+R_{x,\beta}, R_{z,\alpha}, R_{v,\theta}, R_{x,\phi}  \nonumber \\
+R_{x,\beta}, R_{z,\alpha}, R_{x,\phi} ,   R_{v,\theta} \nonumber \\
+% Start with \theta
+R_{y,\theta}, R_{x,\beta},  R_{z,\alpha}, R_{x,\phi} 
+\end{eqnarray}
+
+The number of possibly combinations is $2^{n-1}$ where n is nthe number of rotational matricies. The number of combinations possible when starting from the final position follows the corresponding row of the Pascal's triangle. 
+
+Example: For 4 rotations with the final rotation matrix of [A][B][C][D]. Capital letters will represent a fixed rotation, lowercase a body rotation.
+
+There is 1 possible combination when starting with the $1^{st}$ final position:
+\begin{itemize}
+  \item [A][b][c][d]
+\end{itemize}
+
+There are 3 possible combinations when starting with the $2^{nd}$ final position:
+\begin{itemize}
+  \item [B][A][c][d]
+  \item [B][c][A][d]
+  \item [B][c][d][A]
+\end{itemize}
+
+There are 3 possible combinations when starting with the $3^{rd}$ final position:
+\begin{itemize}
+  \item [C][B][A][d]
+  \item [C][B][d][A]
+  \item [C][d][B][A]
+\end{itemize}
+
+There is 1 possible combination when starting with the $4^{th}$ final position:
+\begin{itemize}
+  \item [D][C][B][A]
+\end{itemize}
+
+\begin{tabular}{rccccccccc}
+$n_r=1$:&    &    &    &    &  1\\\noalign{\smallskip\smallskip}
+$n_r=2$:&    &    &    &  1 &    &  1\\\noalign{\smallskip\smallskip}
+$n_r=3$:&    &    &  1 &    &  2 &    &  1\\\noalign{\smallskip\smallskip}
+$n_r=4$:&    &  1 &    &  3 &    &  3 &    &  1\\\noalign{\smallskip\smallskip}
+$n_r=5$:&  1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
+\end{tabular}
+
+Mathematilly this wor
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Net rotation matrix formula is shown in Eqn. \ref{netrot}. The calculations for angles $\alpha$ and $\beta$ are show in Eqn. \ref{alpha} and \ref{beta}, respectively. The complete rotation matrix is shown in Eqn. \ref{netRotF}
+\begin{eqnarray}
+&[R_{\alpha,\beta,\phi}]&=[R_{x,-\alpha}][R_{y,\beta}][R_{z,\phi}][R_{y,-\beta}][R_{x,\alpha}] \label{netrot} \\
+&\phi&=30^{\circ} \\
+&\alpha&=\cos^{-1}\parens{\frac{r_z}{\sqrt{r_y^2+r_z^2}}}=\sin^{-1}\parens{\frac{r_y}{\sqrt{r_y^2+r_z^2}}}=\tan^{-1}\parens{\frac{r_y}{r_z}} \label{alpha} \\
+&\beta&=\cos^{-1}\parens{\frac{\sqrt{r_y^2+r_z^2}}{\sqrt{r_x^2+r_y^2+r_z^2}}}=\sin^{-1}\parens{\frac{r_x}{\sqrt{r_x^2+r_y^2+r_z^2}}}=\tan^{-1}\parens{\frac{r_x}{\sqrt{r_y^2+r_z^2}}} \label{beta}\\
+%&[R_{\alpha,\beta,\phi}]&=\begin{bmatrix}cos(\beta)^2*cos(\phi) & -cos(\beta)*(cos(\alpha)*sin(\phi)+cos(\phi)*sin(\alpha)*sin(\beta)) & cos(\beta)*(sin(\alpha)*sin(\phi)-cos(\alpha)*cos(\phi)*sin(\beta))\\
+%cos(\beta)*(cos(\alpha)*sin(\phi)-cos(\phi)*sin(\alpha)*sin(\beta)) & cos(\phi)*(cos(\alpha)^2*cos(\beta)^2-cos(\beta)^2+1) & sin(\alpha)*(2*sin(\alpha/2)^2-1)*(2*sin(\phi/2)^2-1)*(sin(\beta)^2-1)-sin(\beta)*sin(\phi)\\
+%-cos(\beta)*(sin(\alpha)*sin(\phi)+cos(\alpha)*cos(\phi)*sin(\beta)) & sin(\beta)*sin(\phi)+sin(\alpha)*(2*sin(\alpha/2)^2-1)*(2*sin(\phi/2)^2-1)*(sin(\beta)^2-1) & -cos(\phi)*(cos(\alpha)^2*cos(\beta)^2-1)\end{bmatrix}
+&[R_{\alpha,\beta,\phi}]&=\begin{bmatrix}0.2887 & -0.0846 & 0.4928 \\
+   -0.4928 & 0.7217 & -0.2639 \\
+    0.0846 &  0.5526 & 0.7217\end{bmatrix} \label{netRotF}
+\end{eqnarray}
+
+\end{homeworkProblem}
+\end{spacing}
+\end{document}

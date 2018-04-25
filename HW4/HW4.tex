@@ -1,0 +1,250 @@
+\documentclass{report}
+% Change "article" to "report" to get rid of page number on title page
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{Tabbing}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{soul,color}
+\usepackage{graphicx,float,wrapfig}
+\usepackage{lscape}
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=-.50in     %
+\oddsidemargin=-.50in      %
+\textwidth=7.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Homework Specific Information
+\newcommand{\hmwkDueDate}{Feb 15, 2012}
+\newcommand{\hmwkClass}{ME572}
+\newcommand{\hmwkNumber}{4}
+\newcommand{\hmwkAuthorName}{Jedediah Frey}
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\hmwkAuthorName}                                                 %
+\chead{\hmwkClass\ Homework \#\hmwkNumber}  %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+
+% This is used to trace down (pin point) problems
+% in latexing a document:
+%\tracingall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\parens}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newlength{\labelLength}
+\newcommand{\labelAnswer}[2]
+  {\settowidth{\labelLength}{#1}%
+   \addtolength{\labelLength}{0.25in}%
+   \changetext{}{-\labelLength}{}{}{}%
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#2\end{minipage}}%
+   \marginpar{\fbox{#1}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   \changetext{}{+\labelLength}{}{}{}}%
+
+\setcounter{secnumdepth}{0}
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\problemAnswer}[1]
+  {\noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}}%
+
+\newcommand{\problemLAnswer}[1]
+  {\labelAnswer{\homeworkProblemName}{#1}}
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+   % Otherwise the changetext can do funny things to the other margin
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon (otherwise \sectionAnswer's can
+   % get ugly about their \marginpar placement.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\sectionAnswer}[1]
+  {% We put this space here to make sure we're disconnected from the previous
+   % passage
+
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}%
+   \enterProblemHeader{\homeworkProblemName}\exitProblemHeader{\homeworkProblemName}%
+   \marginpar{\fbox{\homeworkSectionName}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   }%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\vspace{2in}\textmd{\textbf{\hmwkClass:\ Homework \#\hmwkNumber}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}}
+\date{}
+\author{\textbf{\hmwkAuthorName}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{spacing}{1.1}
+\maketitle
+\newpage
+\clearpage
+\begin{homeworkProblem}
+\textbf{Device 1:}
+\begin{eqnarray}
+P_x&=&L_3\parens{\cos(\theta_2)\sin(\theta_1)\sin(\theta_3)+\cos(\theta_3)\sin(\theta_1)\sin(\theta_2)}+d1\cos(\theta_1)+L_2\sin(\theta_1)\sin(\theta_2) \\
+&=& d_1\cos(\theta_1) + L_3\sin(\theta_1)\sin(\theta_2 + \theta_3) + L_2\sin(\theta_1)\sin(\theta_2) \\
+&=& d_1\cos(\theta_1) + \sin(\theta_1)(L_3\sin(\theta_2 + \theta_3) + L_2\sin(\theta_2)) \\
+P_y&=&d_1\sin(\theta_1)-L_3(\cos(\theta_1)\cos(\theta_2)\sin(\theta_3)+\cos(\theta_1)\cos(\theta_3)\sin(\theta_2))-L_2\cos(\theta_1)\sin(\theta_2) \\
+&=&     d_1\sin(\theta_1) - L_3\cos(\theta_1)\sin(\theta_2 + \theta_3)-L_2\cos(\theta_1)\sin(\theta_2) \\
+&=&     d_1\sin(\theta_1) - \cos(\theta_1)(L_3\sin(\theta_2 + \theta_3)+L_2\sin(\theta_2)) \\
+P_z&=&L_1+L_3\cos(\theta_2+\theta_3)+L_2\cos(\theta_2) \\
+T_{w}&=&\begin{bmatrix} 
+\cos(\theta_1)&-\cos(\theta_2+\theta_3)\sin(\theta_1)& -\sin(\theta_2+\theta_3)\sin(\theta_1) & P_x \\
+\sin(\theta_1)&\cos(\theta_2+\theta_3)\cos(\theta_1) &    \sin(\theta_2+\theta_3)\sin(\theta_1) & P_y \\
+0&\sin(\theta_2+\theta_3)&\cos(\theta_2+\theta_3)& P_z \\
+0&0&0&1\end{bmatrix}
+\end{eqnarray}
+\textbf{Device 2:}
+\begin{eqnarray}
+P_x&=& d_1\cos(\theta_1)+S_3\sin(\theta_1)\sin(\theta_2) \label{Px2}\\
+P_y&=& d_1\sin(\theta_1)-S_3\cos(\theta_1)\sin(\theta_2) \label{Py2}\\
+P_z&=&L_1 + S_3\cos(\theta_2) \label{Pz2}\\
+T_{w}&=&\begin{bmatrix}
+\cos(\theta_1) & -\cos(\theta_2)\sin(\theta_1) & \sin(\theta_1)\sin(\theta_2)&P_x \\
+\sin(\theta_1) & \cos(\theta_1)\cos(\theta_2) & -\cos(\theta_1)\sin(\theta_2)& P_y \\
+0 & \sin(\theta_2) & \cos(\theta_2) & P_z  \\
+0 & 0 & 0 & 1\end{bmatrix}
+\end{eqnarray}
+\end{homeworkProblem}
+\newpage
+\begin{homeworkProblem}
+\textbf{Device 2:}
+
+[Completed first since it was simpler]
+
+
+Solve for $S_3$ by squaring and adding all of the terms. Subtract $L_1$ from the $P_z$ equation first.
+\begin{eqnarray}
+P_x^2+P_y^2+(P_z-L_1)^2&=&S_3^2 + d_1^2 \\ 
+S_3^2&=&{P_x^2 + P_y^2 + (P_z-L_1)^2- d_1^2} \\
+S_3&=&\pm\sqrt{P_x^2 + P_y^2 + (P_z-L_1)^2- d_1^2} 
+\end{eqnarray}
+Given the world transform looks like:
+\begin{eqnarray}
+T_{w}&=&\begin{bmatrix}
+N_x & O_x & A_x & P_x \\
+N_y & O_y & A_y & P_y \\
+N_z & O_z & A_z & P_z \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\end{eqnarray}
+The desired variables can be isolated by manipulating the transforms. (Easier to me than trig identities). 
+\begin{eqnarray}
+\phi_2T_2\phi_3T_3&=&(\phi_1T_1)^{-1}Tw\\
+P_x\cos(\theta_1) + P_y\sin(\theta_1)&=&d_1 
+\end{eqnarray}
+Basic definitions to substitute into the above equation.
+\begin{eqnarray}
+R&=&\sqrt{P_x^2+P_y^2} \\
+\phi&=&tan^{-1}\parens{\frac{P_y}{P_x}} \\
+P_x&=&R\cos{\phi} \\
+P_y&=&R\sin{\phi}
+\end{eqnarray}
+Values substituted in and reduced to simplest form.
+\begin{eqnarray}
+R\cos(\phi)\cos(\theta_1) + R\sin(\phi)\sin(\theta_1)&=&d_1 \\
+R\cos(\phi - \theta_1)&=&d_1
+\end{eqnarray}
+Simplify the angle into $\alpha$ for now.
+\begin{eqnarray}
+\phi - \theta_1&=&\alpha \\
+R\cos(\alpha)&=&d_1
+\end{eqnarray}
+Multiply both sides by $\sin$ until we end up with $\tan$ on one side.
+\begin{eqnarray}
+R\cos(\alpha)\sin(\alpha)&=&d_1\sin(\alpha) \\
+\frac{R\cos(\alpha)\sin(\alpha)}{d_1}&=&\sin(\alpha) \\
+\frac{R\sin(\alpha)}{d_1}&=&\frac{\sin(\alpha)}{\cos(\alpha)} \\
+\frac{R\sin(\alpha)}{d_1}&=&\tan{\alpha}
+\end{eqnarray}
+More trig identities so we can substitute in what we already know.
+\begin{eqnarray}
+\sin{\alpha}^2+\cos{\alpha}^2&=&1 \\
+\sin{\alpha} &=& \sqrt{1-\cos{\alpha}^2} \\
+&=&\sqrt{1-\frac{d_1^2}{R^2}}
+\end{eqnarray}
+Solve for the angle, replace with our definition for $\alpha$. Final symbolic equation is in Eqn. \ref{finalTheta1Dev2}.
+\begin{eqnarray}
+\alpha&=&\tan^{-1}\parens{\frac{\pm\sqrt{\parens{1-\frac{d_1^2}{P_x^2+P_y^2}}\parens{P_x^2+P_y^2}}}{d_1}} \\
+\phi - \theta_1&=& \\
+\theta_1&=&\tan^{-1}\parens{\frac{P_y}{P_x}}-\tan^{-1}\parens{\frac{\pm\sqrt{\parens{1-\frac{d_1^2}{P_x^2+P_y^2}}\parens{P_x^2+P_y^2}}}{d_1}} \label{finalTheta1Dev2}
+\end{eqnarray}
+
+From the same transform that was done to $T_w$ above, the $P_x$ and $P_y$ equations become:
+\begin{eqnarray}
+P_y\cos(\theta_1) - Px\sin(\theta_1)&=&-S_3\sin(\theta_2) \\
+P_z&=&L_1 + S_3\cos(\theta_2)\\
+\sin(\theta_2)&=&\frac{Px\sin(\theta_1)-P_y\cos(\theta_1)}{S_3} \\
+\cos(\theta_2)&=&\frac{P_z-L_1}{S_3} \\
+\tan(\theta_2)&=&\frac{\frac{Px\sin(\theta_1)-P_y\cos(\theta_1)}{S_3}}{\frac{P_z-L_1}{S_3}}
+\end{eqnarray}
+One thing to note on the above equation, $S_3$ can not be canceled since it puts the solution in the right quadrant when using atan2 (the only real $tan^{-1}$ there is). \\
+\textbf{Device 1:}
+$\theta_1$ is solved in the same manner as above. The equation below is the same so the solutions for $\theta_1$ will be too.
+\begin{eqnarray}
+P_x\cos(\theta_1) + P_y\sin(\theta_1)&=&d_1 \\
+\theta_1&=&\tan^{-1}\parens{\frac{P_y}{P_x}}-\tan^{-1}\parens{\frac{\pm\sqrt{\parens{1-\frac{d_1^2}{P_x^2+P_y^2}}\parens{P_x^2+P_y^2}}}{d_1}} 
+\end{eqnarray}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{Device 1:} \\
+\textbf{Device 2:}
+There are 2 unique solutions for both $S_3$ and $\theta_1$ and thus 4 solutions to the problem. \\
+\begin{tabular}{ l l l }
+$S_3=+\sqrt{43}$&$\theta_1=254.2776^o$&$\theta_3=319.6844^o$\\
+$S_3=-\sqrt{43}$&$\theta_1=254.2776^o$&$\theta_3=139.6844^o$\\
+$S_3=+\sqrt{43}$&$\theta_1=347.6500^o$&$\theta_3=40.3156^o$\\
+$S_3=-\sqrt{43}$&$\theta_1=347.6500^o$&$\theta_3=220.3156^o$\\
+\end{tabular}
+\end{homeworkProblem}
+\end{spacing}
+\end{document}

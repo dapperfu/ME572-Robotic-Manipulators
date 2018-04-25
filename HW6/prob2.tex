@@ -1,0 +1,21 @@
+\begin{homeworkProblem}
+\textit{
+If the joint variables for the 2-D manipulator are: $\theta_1=330^o$; $S_2=3"$;  $\theta_3=80^o$, solve for the following using the Jacobian.
+\begin{enumerate}[(a)]
+    \item $\dot{X_p}$, $\dot{Y_p}$, $\dot{\omega_z}$ for $\dot{\theta_1}=5$ rad/sec, $\dot{S_2}=-4.0$"/sec, and $\dot{\theta_3}=-2.0$ rad/sec.
+    \item $\dot{\theta_1}$, $\dot{S_2}$, $\dot{\theta_3}$ for $\dot{X_p}=-2.0$"/sec, $\dot{Y_p}=5.0$"/sec, and $\dot{\omega_z}=-3.0$ rad/sec.
+\end{enumerate}
+}
+To solve for the inverse Jacobian matrix the J matrix needs to be square. (Or at least there need to be at least as many knowns as unknowns to solve for). In the case of this matrix, there are only 3 parameters that we can tune so at most we can only solve for them if we are given 3 or less velocity parameters, otherwise it will be over constrained. 
+
+At this particular orientation with $\theta_1=330^o$, $S_2=3"$, and $\theta_3=80^o$ the Jacobian matrix reduces to Eqn. \ref{Jp}. Since we are only interested in $\dot{X_p}$, $\dot{Y_p}$, $\dot{\omega_z}$ (Since it is a 2D manipulator) it can be further reduced to Eqn. \ref{Jp2} with the input and output relationships shown in Eqns. \ref{J_forward} and \ref{J_inv}.
+\begin{eqnarray}
+\input{J2}
+\begin{Bmatrix}\dot{X_p} \\ \dot{Y_p} \\ \dot{\omega_z}\end{Bmatrix}&=& \begin{bmatrix}J\end{bmatrix}\begin{Bmatrix}\dot{\theta_1} \\ \dot{S_2} \\ \dot{\theta_3}\end{Bmatrix} \label{J_forward} \\
+\begin{Bmatrix}\dot{\theta_1} \\ \dot{S_2} \\ \dot{\theta_3}\end{Bmatrix} &=& \begin{bmatrix}J\end{bmatrix}^{-1} \begin{Bmatrix}\dot{X_p} \\ \dot{Y_p} \\ \dot{\omega_z}\end{Bmatrix} \label{J_inv} 
+\end{eqnarray}
+Substituting in the given parameters the solutions for part a and b are in Eqns. \ref{parta} and \ref{partb}, respectively. Angle velocities are given in rad/sec and linear velocities are in inches/second.
+\begin{eqnarray}
+\input{part2}
+\end{eqnarray}
+\end{homeworkProblem}

@@ -1,0 +1,184 @@
+\documentclass{report}
+% Change "article" to "report" to get rid of page number on title page
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{Tabbing}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{soul,color}
+\usepackage{graphicx,float,wrapfig}
+\usepackage{fouridx}
+\usepackage{tensor}
+
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0.0in     %
+\oddsidemargin=0.0in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Homework Specific Information
+\newcommand{\hmwkTitle}{}
+\newcommand{\hmwkDueDate}{Feb 3, 2012}
+\newcommand{\hmwkClass}{ME572}
+\newcommand{\hmwkNumber}{3b}
+\newcommand{\hmwkAuthorName}{Jedediah Frey}
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\hmwkAuthorName}                                                 %
+\chead{\hmwkClass\ Homework \#\hmwkNumber}  %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+
+% This is used to trace down (pin point) problems
+% in latexing a document:
+%\tracingall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\parens}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newlength{\labelLength}
+\newcommand{\labelAnswer}[2]
+  {\settowidth{\labelLength}{#1}%
+   \addtolength{\labelLength}{0.25in}%
+   \changetext{}{-\labelLength}{}{}{}%
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#2\end{minipage}}%
+   \marginpar{\fbox{#1}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   \changetext{}{+\labelLength}{}{}{}}%
+
+\setcounter{secnumdepth}{0}
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\problemAnswer}[1]
+  {\noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}}%
+
+\newcommand{\problemLAnswer}[1]
+  {\labelAnswer{\homeworkProblemName}{#1}}
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+   % Otherwise the changetext can do funny things to the other margin
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon (otherwise \sectionAnswer's can
+   % get ugly about their \marginpar placement.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\vspace{2in}\textmd{\textbf{\hmwkClass:\ Homework \#\hmwkNumber}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}}
+\date{}
+\author{\textbf{\hmwkAuthorName}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{spacing}{1.1}
+\maketitle
+\newpage
+% Uncomment the \tableofcontents and \newpage lines to get a Contents page
+% Uncomment the \setcounter line as well if you do NOT want subsections
+%       listed in Contents
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+%\newpage
+
+% When problems are long, it may be desirable to put a \newpage or a
+% \clearpage before each homeworkProblem environment
+
+\clearpage
+\stepcounter{homeworkProblemCounter}
+\stepcounter{homeworkProblemCounter}
+\stepcounter{homeworkProblemCounter}
+\begin{homeworkProblem}
+The simplified manipulator transform $[T_M]$ is shown in Enq. \ref{Tw_simp}.
+\begin{eqnarray}
+T_w=\begin{bmatrix}
+\cos(\theta_1 + \theta_3)&0&sin(\theta_1 + \theta_3)&3\sin(\theta_1 + \theta_3) + 3\cos(\theta_1) + S_2\sin(\theta_1)\\ 
+\sin(\theta_1 + \theta_3)&0&-cos(\theta_1 + \theta_3)&3\sin(\theta_1) - 3\cos(\theta_1 + \theta_3) - S_2\cos(\theta_1)\\ 
+0&1&0&0\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{Tw_simp}
+\end{eqnarray}
+A final transformation matrix in Eqn.\ref{TEECS} is used to put the end of the robot into EECS (Eqn. \ref{EECS}). Where EECS is specified as 'n' normal of the hand and orthogonal to the fingers of the robot, 'o' sliding vector of the hand, 'a' is the approach vector of the hand.
+Substituting in $\theta_1=330^o$, $S_2=3"$, and $\theta_3=80^o$ will get the solution, Eqn. \ref{EECS2}.
+
+\begin{eqnarray}
+T&=&\begin{bmatrix}
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix} \label{TEECS} \\
+T_{EECS}&=&\begin{bmatrix}
+n_x & o_x & a_x & p_x \\
+n_y & o_y & a_y & p_y \\
+n_z & o_z & a_z & p_z \\
+0 & 0 & 0 & 1
+\end{bmatrix} \label{EECS} \\
+&=&\begin{bmatrix}
+0.00&0.64&0.77&3.40\\ 
+0.00&0.77&-0.64&-6.03\\ 
+1.00&0.00&0.00&0.00\\ 
+0.00&0.00&0.00&1.00\\ 
+\end{bmatrix}  \label{EECS2} 
+\end{eqnarray}
+\end{homeworkProblem}
+\newpage
+\begin{homeworkProblem}
+
+\end{homeworkProblem}
+\newpage
+\begin{homeworkProblem}
+Solution 1:
+\begin{eqnarray}
+\theta_1&=&326.25^o \\
+\theta_3&=&333.75^o \\
+S_2&=&7.0154
+\end{eqnarray}
+\end{homeworkProblem}
+
+
+
+\end{spacing}
+\end{document}

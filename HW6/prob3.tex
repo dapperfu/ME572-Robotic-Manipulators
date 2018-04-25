@@ -1,0 +1,21 @@
+\begin{homeworkProblem}
+Using Cramer's rule to solve for each of the equations you get the general solution below:
+\begin{eqnarray}
+\input{soln}
+\end{eqnarray}
+
+The equation will divide by zero when $S_2$ is 0. This can also be found by just looking at the determinant of the Jacobian matrix, $-S_2$. The Jacobian for $S_2=0$ with the angles remaining the same is shown below. Attempting to take the determinant of it with Matlab results in very large numbers and Matlab complaining about a singularity. The Jacobian will not work when $S_2=0$.
+
+\begin{eqnarray}
+J&=&\begin{bmatrix}
+3.43&-0.50&1.93\\ 
+4.90&-0.87&2.30\\ 
+1.00&0.00&1.00\\ 
+\end{bmatrix} \\
+J^{-1}&=&\begin{bmatrix}
+-1501199875790165.25&866718152394885.75&903024166285322.75\\ 
+-4503599627370496.00&2600154457184656.00&2709072498855971.00\\ 
+1501199875790165.25&-866718152394885.75&-903024166285321.75\\ 
+\end{bmatrix}
+\end{eqnarray}
+\end{homeworkProblem}

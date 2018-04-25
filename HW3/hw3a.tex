@@ -1,0 +1,303 @@
+\documentclass{report}
+% Change "article" to "report" to get rid of page number on title page
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{Tabbing}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{soul,color}
+\usepackage{graphicx,float,wrapfig}
+\usepackage{fouridx}
+\usepackage{tensor}
+
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=-.50in     %
+\oddsidemargin=-.5in      %
+\textwidth=6.5in        %
+\textheight=9.0in       %
+\headsep=0.25in         %
+
+% Homework Specific Information
+\newcommand{\hmwkTitle}{}
+\newcommand{\hmwkDueDate}{Feb 3, 2012}
+\newcommand{\hmwkClass}{ME572}
+\newcommand{\hmwkNumber}{3a}
+\newcommand{\hmwkAuthorName}{Jedediah Frey}
+
+% Setup the header and footer
+\pagestyle{fancy}                                                       %
+\lhead{\hmwkAuthorName}                                                 %
+\chead{\hmwkClass\ Homework \#\hmwkNumber}  %
+\rhead{\firstxmark}                                                     %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}                                      %
+
+% This is used to trace down (pin point) problems
+% in latexing a document:
+%\tracingall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some tools
+\newcommand{\parens}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+                                    \nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}%
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+                                   \nobreak\extramarks{#1}{}\nobreak}%
+
+\newlength{\labelLength}
+\newcommand{\labelAnswer}[2]
+  {\settowidth{\labelLength}{#1}%
+   \addtolength{\labelLength}{0.25in}%
+   \changetext{}{-\labelLength}{}{}{}%
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#2\end{minipage}}%
+   \marginpar{\fbox{#1}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   \changetext{}{+\labelLength}{}{}{}}%
+
+\setcounter{secnumdepth}{0}
+\newcommand{\homeworkProblemName}{}%
+\newcounter{homeworkProblemCounter}%
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]%
+  {\stepcounter{homeworkProblemCounter}%
+   \renewcommand{\homeworkProblemName}{#1}%
+   \section{\homeworkProblemName}%
+   \enterProblemHeader{\homeworkProblemName}}%
+  {\exitProblemHeader{\homeworkProblemName}}%
+
+\newcommand{\problemAnswer}[1]
+  {\noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}}%
+
+\newcommand{\problemLAnswer}[1]
+  {\labelAnswer{\homeworkProblemName}{#1}}
+
+\newcommand{\homeworkSectionName}{}%
+\newlength{\homeworkSectionLabelLength}{}%
+\newenvironment{homeworkSection}[1]%
+  {% We put this space here to make sure we're not connected to the above.
+   % Otherwise the changetext can do funny things to the other margin
+
+   \renewcommand{\homeworkSectionName}{#1}%
+   \settowidth{\homeworkSectionLabelLength}{\homeworkSectionName}%
+   \addtolength{\homeworkSectionLabelLength}{0.25in}%
+   \changetext{}{-\homeworkSectionLabelLength}{}{}{}%
+   \subsection{\homeworkSectionName}%
+   \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}}%
+  {\enterProblemHeader{\homeworkProblemName}%
+
+   % We put the blank space above in order to make sure this margin
+   % change doesn't happen too soon (otherwise \sectionAnswer's can
+   % get ugly about their \marginpar placement.
+   \changetext{}{+\homeworkSectionLabelLength}{}{}{}}%
+
+\newcommand{\sectionAnswer}[1]
+  {% We put this space here to make sure we're disconnected from the previous
+   % passage
+
+   \noindent\fbox{\begin{minipage}[c]{\columnwidth}#1\end{minipage}}%
+   \enterProblemHeader{\homeworkProblemName}\exitProblemHeader{\homeworkProblemName}%
+   \marginpar{\fbox{\homeworkSectionName}}%
+
+   % We put the blank space above in order to make sure this
+   % \marginpar gets correctly placed.
+   }%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make title
+\title{\vspace{2in}\textmd{\textbf{\hmwkClass:\ Homework \#\hmwkNumber}}\\\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}}
+\date{}
+\author{\textbf{\hmwkAuthorName}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{spacing}{1.1}
+\maketitle
+\newpage
+% Uncomment the \tableofcontents and \newpage lines to get a Contents page
+% Uncomment the \setcounter line as well if you do NOT want subsections
+%       listed in Contents
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+%\newpage
+
+% When problems are long, it may be desirable to put a \newpage or a
+% \clearpage before each homeworkProblem environment
+
+\clearpage
+\begin{homeworkProblem}
+Solve problem 2.6 in the reference text. Determine $^{i-1}A_i$ by inspection. These are listed in Eqn. \ref{A01} - \ref{A45}.  $^{5}A_0$ will be used to check the validity of the entire transform as it should be an identity matrix.
+\begin{eqnarray}
+\tensor*[^0]{A}{_1}=\begin{bmatrix}
+-1&0&0&0\\ 
+0&0&-1&c + e\\ 
+0&-1&0&a - d\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{A01} \\
+{}^1A_2=\begin{bmatrix}
+0&-1&0&b\\ 
+0&0&-1&a - d\\ 
+1&0&0&0\\ 
+0&0&0&1\\ 
+\end{bmatrix} \\
+^2A_3=\begin{bmatrix}
+0&0&1&e\\ 
+0&1&0&0\\ 
+-1&0&0&a\\ 
+0&0&0&1\\ 
+\end{bmatrix} \\
+^3A_4=\begin{bmatrix}
+0&0&-1&d\\ 
+1&0&0&0\\ 
+0&-1&0&c\\ 
+0&0&0&1\\ 
+\end{bmatrix} \\
+^4A_5=\begin{bmatrix}
+0&0&-1&b\\ 
+1&0&0&0\\ 
+0&-1&0&d\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{A45} \\
+^5A_0=\begin{bmatrix}
+0&1&0&0\\ 
+0&0&-1&a\\ 
+-1&0&0&0\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{A50}
+\end{eqnarray}
+ $^0A_i$ were all calculated by matrix multiplication and listed in Eqn. \ref{A02} - \ref{A05}. Eqn. \ref{A00_eqn} was used check that all of the matricies were correct.  $^0A_0$ is the identity matrix as shown below.
+
+\begin{eqnarray}
+^0A_2=\begin{bmatrix}
+0&1&0&-b\\ 
+-1&0&0&c + e\\ 
+0&0&1&0\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{A02} \\
+^0A_3=\begin{bmatrix}
+0&1&0&-b\\ 
+0&0&-1&c\\ 
+-1&0&0&a\\ 
+0&0&0&1\\ 
+\end{bmatrix}  \\
+^0A_4=\begin{bmatrix} \\
+1&0&0&-b\\ 
+0&1&0&0\\ 
+0&0&1&a - d\\ 
+0&0&0&1\\ 
+\end{bmatrix} \\
+^0A_5=\begin{bmatrix} \\
+0&0&-1&0\\ 
+1&0&0&0\\ 
+0&-1&0&a\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{A05} \\
+^0A_0=\tensor*[^0]{A}{_1} \tensor*[^1]{A}{_2} \tensor*[^2]{A}{_3} \tensor*[^3]{A}{_4} \tensor*[^4]{A}{_5} \tensor*[^5]{A}{_0}\label{A00_eqn} \\
+^0A_0=\begin{bmatrix}
+1&0&0&0\\ 
+0&1&0&0\\ 
+0&0&1&0\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{A00}
+\end{eqnarray}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+The joint constraint matrices are listed in Eqn. \ref{phi1}, \ref{phi2}, and \ref{phi3} and the shape matrices Eqn. \ref{T1}, \ref{T2}, and \ref{T3}.
+\begin{eqnarray}
+\phi_1&=&\begin{bmatrix}
+\cos{\theta_1}&-\sin{\theta_1}&0&0\\ 
+\sin{\theta_1}&\cos{\theta_1}&0&0\\ 
+0&0&1&0\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{phi1}\\
+T_1&=&\begin{bmatrix}
+0.00&1.00&0.00&3.00\\ 
+0.00&0.00&-1.00&0.00\\ 
+-1.00&0.00&0.00&0.00\\ 
+0.00&0.00&0.00&1.00\\ 
+\end{bmatrix} \label{T1} \\
+\phi_2&=&\begin{bmatrix}
+1&0&0&0\\ 
+0&1&0&0\\ 
+0&0&1&s2\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{phi2} \\
+T_2&=&\begin{bmatrix}
+0.00&0.00&-1.00&0.00\\ 
+0.00&1.00&0.00&0.00\\ 
+1.00&0.00&0.00&0.00\\ 
+0.00&0.00&0.00&1.00\\ 
+\end{bmatrix} \label{T2} \\
+\phi_3&=&\begin{bmatrix} 
+\cos{\theta_3}&-\sin{\theta_3}&0&0\\ 
+\sin{\theta_3}&\cos{\theta_3}&0&0\\ 
+0&0&1&0\\ 
+0&0&0&1\\ 
+\end{bmatrix}  \label{phi3}\\
+T_3&=&\begin{bmatrix}
+0.00&0.00&1.00&3.00\\ 
+1.00&0.00&0.00&0.00\\ 
+0.00&1.00&0.00&0.00\\ 
+0.00&0.00&0.00&1.00\\ 
+\end{bmatrix} \label{T3}
+\end{eqnarray}
+
+To validate each of the joint constraight and shape matrices let $\theta_1=90^o$, $S_2=2"$, and $\theta_3=0^o$ (as shown at the bottom of the homework page). By inspection we can verify that the above equations are correct.
+
+\begin{eqnarray}
+{}^0A_1=\phi_1T_1&=&\begin{bmatrix}
+0.00&0.00&1.00&0.00\\ 
+0.00&1.00&0.00&3.00\\ 
+-1.00&0.00&0.00&0.00\\ 
+0.00&0.00&0.00&1.00\\ 
+\end{bmatrix} \\
+{}^0A_2=\phi_1T_1\phi_2T_2&=&\begin{bmatrix}
+1.00&0.00&0.00&2.00\\ 
+0.00&1.00&0.00&3.00\\ 
+0.00&0.00&1.00&0.00\\ 
+0.00&0.00&0.00&1.00\\ 
+\end{bmatrix} \\
+{}^0A_3=T_w&=&\begin{bmatrix}
+0.00&0.00&1.00&5.00\\ 
+1.00&0.00&0.00&3.00\\ 
+0.00&1.00&0.00&0.00\\ 
+0.00&0.00&0.00&1.00\\ 
+\end{bmatrix}
+\end{eqnarray}
+
+\end{homeworkProblem}
+\begin{homeworkProblem}
+The complete manipulator transform $[T_M]$ is shown in Eqn. \ref{Tw} and reduced with trig identities to Eqn. \ref{Tw_simp}.
+\begin{eqnarray}
+T_w=\begin{bmatrix}
+\cos{\theta_1}\cos{\theta_3}-\sin{\theta_1}\sin{\theta_3}&0&\cos{\theta_1}\sin{\theta_3}+\cos{\theta_3}\sin{\theta_1}&3\cos{\theta_1}+3\cos{\theta_1}\sin{\theta_3}+3\cos{\theta_3}\sin{\theta_1}+s2\sin{\theta_1}\\
+\cos{\theta_1}\sin{\theta_3}+\cos{\theta_3}\sin{\theta_1}&0&\sin{\theta_1}\sin{\theta_3}-\cos{\theta_1}\cos{\theta_3}&3\sin{\theta_1}-3\cos{\theta_1}\cos{\theta_3}+3\sin{\theta_1}\sin{\theta_3}-s2\cos{\theta_1}\\
+0&1&0&0\\
+0&0&0&1\\
+\end{bmatrix} \label{Tw} \\
+T_w=\begin{bmatrix}
+cos(theta1 + theta3)&0&sin(theta1 + theta3)&3*sin(theta1 + theta3) + 3*cos(theta1) + s2*sin(theta1)\\ 
+sin(theta1 + theta3)&0&-cos(theta1 + theta3)&3*sin(theta1) - 3*cos(theta1 + theta3) - s2*cos(theta1)\\ 
+0&1&0&0\\ 
+0&0&0&1\\ 
+\end{bmatrix} \label{Tw_simp}
+\end{eqnarray}
+\end{homeworkProblem}
+\end{spacing}
+\end{document}

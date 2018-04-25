@@ -1,0 +1,27 @@
+\begin{eqnarray}
+A_1&=&\begin{bmatrix}
+\cos(\theta_1)&0&\sin(\theta_1)&0\\ 
+\sin(\theta_1)&0&-\cos(\theta_1)&0\\ 
+0&1&0&L_1\\ 
+0&0&0&1\\ 
+\end{bmatrix} \\ 
+A_2&=&\begin{bmatrix}
+\cos(\theta_2)&0&-\sin(\theta_2)&0\\ 
+\sin(\theta_2)&0&\cos(\theta_2)&0\\ 
+0&-1&0&d_2\\ 
+0&0&0&1\\ 
+\end{bmatrix} \\ 
+A_2&=&\begin{bmatrix}
+0&1&0&0\\ 
+-1&0&0&0\\ 
+0&0&1&S_3\\ 
+0&0&0&1\\ 
+\end{bmatrix} \\ 
+T&=&A_1A_2A_3 \\ 
+&=&\begin{bmatrix}
+\sin(\theta_1)&\cos(\theta_1)\cdot\cos(\theta_2)&-\cos(\theta_1)\cdot\sin(\theta_2)&d_2\cdot\sin(\theta_1) - S_3\cdot\cos(\theta_1)\cdot\sin(\theta_2)\\ 
+-\cos(\theta_1)&\cos(\theta_2)\cdot\sin(\theta_1)&-\sin(\theta_1)\cdot\sin(\theta_2)&- d_2\cdot\cos(\theta_1) - S_3\cdot\sin(\theta_1)\cdot\sin(\theta_2)\\ 
+0&\sin(\theta_2)&\cos(\theta_2)&L_1 + S_3\cdot\cos(\theta_2)\\ 
+0&0&0&1\\ 
+\end{bmatrix}
+\end{eqnarray}
